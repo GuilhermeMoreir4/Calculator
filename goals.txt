@@ -1,0 +1,5 @@
+- 1 Create a Stack class to solve the problem with the polonese calculator algorithm.
+- 2 Create the calculator designe.
+- 3 Read the user input.
+- 4 Verify if it's correct.
+- 5 Do the logic of the operation.
