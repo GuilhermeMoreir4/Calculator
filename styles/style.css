@@ -47,3 +47,7 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
+.operation:hover{
+    cursor: pointer;
+}
