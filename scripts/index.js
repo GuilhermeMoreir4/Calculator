@@ -51,8 +51,8 @@ function toPoloneseNotation(){
 }
 
 function isDigit(str) {
-    return /^[0-9]+$/.test(str);
-  }
+    return /^\d+([.,]\d+)?$/.test(str);
+}
   
   
 
@@ -64,7 +64,7 @@ function calculateResult(){
     
     poloneseSplit.forEach(element => {
         if(isDigit(element)){
-            result.push(parseInt(element,10));
+            result.push(parseFloat(element));
         }else{
             switch(element){
                 case "x":
@@ -75,10 +75,9 @@ function calculateResult(){
                     const div1 =  result.pop();
 
                     result.push(div1 / div2);    
-
-
                     break;
                 case "+":
+
                     result.push(result.pop() + result.pop());    
                     break;
                 case "-":
@@ -91,9 +90,9 @@ function calculateResult(){
         }
 
     });
+    const r = result.pop();
 
-
-   return result.pop();
+   return r;
 }
 
 
@@ -106,19 +105,21 @@ function getInput(){
     operations.forEach(op => {
          op.addEventListener("click", (o)=>{
             const content = o.target.textContent;
-            if(content == "="){
+            if(content === "="){
                const result = calculateResult();
                resultElement.textContent = result;
-            }else if(content == "c"){
+            }else if(content === "c"){
                 operation = "";
                 operationHistory.textContent = "";
                 resultElement.textContent = "";
-            }else if(content == ","){
+            }else if(content === "," ){
                 operation += ".";
+                operationHistory.textContent += content; 
+            }else if(isDigit(parseFloat(content))){
+                operation += content; 
                 operationHistory.textContent += content;
-
             }else{
-                operation += " " + content; 
+                operation += " " + content + " "; 
                 operationHistory.textContent += content;
             }
          });   
