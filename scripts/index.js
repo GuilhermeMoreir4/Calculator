@@ -107,6 +107,7 @@ function getInput(){
             const content = o.target.textContent;
             if(content === "="){
                const result = calculateResult();
+               operationHistory.textContent = "";
                resultElement.textContent = result;
             }else if(content === "c"){
                 operation = "";

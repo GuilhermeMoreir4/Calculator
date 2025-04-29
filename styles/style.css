@@ -6,8 +6,7 @@ body{
 }
 
 #calculator{
-
-    background-color: black;
+    background: linear-gradient(to bottom, #222222, #000000);
     min-width: 40rem;
     height: 55rem;
     border-radius: 30px;
@@ -31,6 +30,7 @@ body{
     justify-content: end;
     align-items: center;
     background-color: white;
+    box-shadow: 1px  5px 5px gray;
     margin: 40px;
     padding: 50px;
     height: 2rem;
@@ -43,15 +43,51 @@ body{
 
 .row{
     color: white;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     justify-content: space-around;
 }
 
-.operation{
-    padding: 20px;
-}
 
-.operation:hover{
-    cursor: pointer;
-}
+.operation {background-image: linear-gradient(to right, #283048 0%, #859398  51%, #283048  100%)}
+.operation {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   border-radius: 10px;
+   display: block;
+   font-size: 30px;
+
+ }
+
+ .operation:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   cursor: pointer;
+
+ }
+
+
+#special-op {background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%)}
+#special-op {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   border-radius: 10px;
+   display: block;
+ }
+
+#special-op:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
