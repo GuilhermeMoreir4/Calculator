@@ -92,3 +92,24 @@ body{
    color: #fff;
    text-decoration: none;
  }
+
+
+ 
+ @media all and (min-width: 768px) and (max-width: 1024px) { 
+    #calculator{
+        scale: 0.8;
+    }
+
+ }
+  
+ @media all and (min-width: 480px) and (max-width: 768px) {
+    #calculator{
+        scale: 0.5;
+    }
+}
+  
+ @media all and (max-width: 480px) {
+    #calculator{
+        scale: 0.43;
+    }
+  }
