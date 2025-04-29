@@ -109,6 +109,7 @@ function getInput(){
                const result = calculateResult();
                operationHistory.textContent = "";
                resultElement.textContent = result;
+               operation = "";
             }else if(content === "c"){
                 operation = "";
                 operationHistory.textContent = "";
