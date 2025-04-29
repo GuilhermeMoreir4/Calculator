@@ -116,6 +116,9 @@ function getInput(){
             }else if(content === "," ){
                 operation += ".";
                 operationHistory.textContent += content; 
+            }else if(content === "m"){
+                operation = resultElement.textContent;
+                operationHistory.textContent = resultElement.textContent;
             }else if(isDigit(parseFloat(content))){
                 operation += content; 
                 operationHistory.textContent += content;
