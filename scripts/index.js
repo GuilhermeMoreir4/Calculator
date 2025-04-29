@@ -71,7 +71,12 @@ function calculateResult(){
                     result.push(result.pop() * result.pop());
                     break;
                 case "/":
-                    result.push(result.pop() / result.pop());
+                    const div2 = result.pop();
+                    const div1 =  result.pop();
+
+                    result.push(div1 / div2);    
+
+
                     break;
                 case "+":
                     result.push(result.pop() + result.pop());    
@@ -108,6 +113,10 @@ function getInput(){
                 operation = "";
                 operationHistory.textContent = "";
                 resultElement.textContent = "";
+            }else if(content == ","){
+                operation += ".";
+                operationHistory.textContent += content;
+
             }else{
                 operation += " " + content; 
                 operationHistory.textContent += content;
