@@ -2,30 +2,116 @@ import {Stack} from "./stack.js";
 
 const stack = new Stack();
 
-var operation = {};
+var operation = "";
 
+function toPoloneseNotation(){
+    const stack = new Stack();
+    let polonese = "";
+    const opArray = operation.split(" ");
 
+    opArray.forEach(op => {
+        if(op == "x" || op == "/"){
+            if(stack.isEmpty()){
+                stack.push(op);
+            }else if(stack.top() == "+" || stack.top() == "-")
+            {
+                stack.push(op);
+            }else if(stack.top() == "/" || stack.top() == "x"){
+                while(stack.top() == "/" || stack.top() == "x"){
+                    polonese += " " + stack.pop();
+                }
+                stack.push(op);
+            }
+        }else if(op == "+" || op == "-"){
+            if(stack.isEmpty()){
+                stack.push(op);
+            }else if(stack.top() == "/" || stack.top() == "x")
+            {
+                polonese += " " + stack.pop();
+                stack.push(op);
 
+            }else if(stack.top() == "+" || stack.top() == "-"){
+                while(stack.top() == "+" || stack.top() == "-"){
+                    polonese += " " + stack.pop();
+                }
+                stack.push(op);
+            }
+        }else{
+            polonese += " " + op;
+        }
+    })
+
+    while(!stack.isEmpty()){
+        polonese += " " + stack.pop();
+    }
+
+    console.log(polonese);
+
+    return polonese;
+}
+
+function isDigit(str) {
+    return /^[0-9]+$/.test(str);
+  }
+  
+  
 
 function calculateResult(){
+    const polonese = toPoloneseNotation();
+    const poloneseSplit = polonese.split(" ");
+    const result = new Stack();
     
+    
+    poloneseSplit.forEach(element => {
+        if(isDigit(element)){
+            result.push(parseInt(element,10));
+        }else{
+            switch(element){
+                case "x":
+                    result.push(result.pop() * result.pop());
+                    break;
+                case "/":
+                    result.push(result.pop() / result.pop());
+                    break;
+                case "+":
+                    result.push(result.pop() + result.pop());    
+                    break;
+                case "-":
+                    const second =  result.pop();
+                    const first = result.pop();
+
+                    result.push(first - second);
+                    break;
+            }
+        }
+
+    });
+
+
+   return result.pop();
 }
 
 
 function getInput(){
     const operations = document.querySelectorAll(".operation");
     const operationHistory = document.querySelector("#operation-history");
+    const resultElement = document.querySelector("#result");
+
+
     operations.forEach(op => {
          op.addEventListener("click", (o)=>{
             const content = o.target.textContent;
             if(content == "="){
-            console.log(operation);
+               const result = calculateResult();
+               resultElement.textContent = result;
             }else if(content == "c"){
                 operation = "";
+                operationHistory.textContent = "";
+                resultElement.textContent = "";
             }else{
                 operation += " " + content; 
-            }
                 operationHistory.textContent += content;
+            }
          });   
     });
 }
